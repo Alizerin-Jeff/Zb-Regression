@@ -1,5 +1,7 @@
 # ZB Futures Mean Reversion Analysis
 
+[![Medium](https://medium.com/@jeffreyhartigan/reversion-in-zb-treasury-bond-futures-an-after-hours-analysis-462a4a199bbe)
+
 Quantitative analysis of after-hours mean reversion in 30-year Treasury Bond futures (`ZB=F`). Builds a complete analytical pipeline: deviation/regression metrics, survival curve fitting, distribution validation, an expected value (EV) double-integral framework, and a Nelder-Mead-optimized backtest.
 
 ## Key Findings
