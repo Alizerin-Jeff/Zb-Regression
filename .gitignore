@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE / OS
+.swift-module-cache/
+.DS_Store
+.vscode/
+.idea/
+
+# Data (large files - keep raw/processed structure but ignore CSVs)
+data/processed/*.csv
+data/raw/*.csv
