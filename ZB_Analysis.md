@@ -1,23 +1,23 @@
-# Mean Reversion in ZB Treasury Bond Futures: An After-Hours Analysis
+# Reversion in ZB Treasury Bond Futures: An After-Hours Analysis
 
 **Jeffrey Hartigan**
-*February 2026*
+*June 2023 (updated February 2026)*
 
 ---
 
 ## Abstract
 
-This paper presents a quantitative analysis of mean reversion in 30-year U.S. Treasury Bond futures (ZB) during after-hours trading sessions. Over 505 sessions from February 2024 to February 2026, we find that price retraces a median of 92.5% of its after-hours deviation from the prior close. We fit parametric distributions to the deviation and regression data, construct a survival curve for the regression ratio, and develop an expected value (EV) framework using double integration over the joint distribution of deviation and regression. A symmetric long/short strategy optimized via Nelder-Mead yields an 18.2% return ($18,201 on $100,000) over the two-year period, with 94 trades at a 71.3% win rate and a maximum drawdown of $4,476.
+This paper presents a quantitative analysis of price reversion in 30-year U.S. Treasury Bond futures (ZB) during after-hours trading sessions. Over 505 sessions from February 2024 to February 2026, we find that price retraces a median of 92.5% of its after-hours deviation from the prior close. We fit parametric distributions to the deviation and regression data, construct a survival curve for the regression ratio, and develop an expected value (EV) framework using double integration over the joint distribution of deviation and regression. A symmetric long/short strategy optimized via Nelder-Mead yields an 18.2% return ($18,201 on $100,000) over the two-year period, with 94 trades at a 71.3% win rate and a maximum drawdown of $4,476.
 
 ---
 
 ## 1. Introduction
 
-Treasury bond futures are among the most liquid instruments in global derivatives markets. Their price behavior during off-peak hours — when liquidity thins and institutional flow subsides — exhibits patterns that differ meaningfully from regular trading sessions. This paper investigates one such pattern: the tendency of ZB futures to retrace the majority of their after-hours price deviation before the next session's open.
+Treasury bond futures are among the most liquid instruments in global derivatives markets. Their price behavior during off-peak hours when liquidity thins and institutional flow subsides exhibits patterns that differ meaningfully from regular trading sessions. This paper investigates one such pattern: the tendency of ZB futures to retrace the majority of their after-hours price deviation before the next session's open.
 
 The hypothesis is straightforward. After the U.S. cash session closes, ZB futures continue trading in a lower-liquidity environment where price can drift materially from the closing level. By the time the next session opens, price has typically retraced most of that drift. If this retracement is both large enough and reliable enough, a systematic strategy can exploit it.
 
-We analyze 505 after-hours sessions spanning February 13, 2024 through February 13, 2026. The data confirms the hypothesis: the median regression ratio — the fraction of the deviation that price retraces — is 92.5%, and price returns to within a few ticks of the prior close in 64.6% of sessions. Using fitted probability distributions for deviation and regression, we construct an expected value framework based on double integration that allows analytical evaluation of strategy profitability. A backtest of the optimized strategy produces an 18.2% return over the period with 94 trades.
+We analyze 505 after-hours sessions spanning February 13, 2024 through February 13, 2026. The data confirms the hypothesis: the median regression ratio, the fraction of the deviation that price retraces, is 92.5%, and price returns to within a few ticks of the prior close in 64.6% of sessions. Using fitted probability distributions for deviation and regression, we construct an expected value framework based on double integration that allows analytical evaluation of strategy profitability. A backtest of the optimized strategy produces an 18.2% return over the period with 94 trades.
 
 The primary contribution of this work is not the specific parameter values, which will shift with each new data window, but the analytical framework itself: fitting continuous distributions to session-level metrics, deriving a closed-form expected value via integration, and using that EV surface to guide backtest optimization.
 
@@ -63,7 +63,7 @@ A regression ratio of 1.0 means price fully retraced its deviation; values above
 
 ### 2.4 Distribution Fitting
 
-We fit eight candidate probability distributions to both the max deviation (%) and regression (%) data using maximum likelihood estimation (MLE) via SciPy. The candidates are: Burr, Burr Type XII, Gumbel (right), LogNormal, Weibull (min), Weibull (max), Gamma, and Inverse Weibull (Fréchet). Each fit is ranked by sum of squared errors (SSE) against the empirical histogram density, with AIC and BIC computed for reference.
+We fit eight candidate probability distributions to both the max deviation (%) and regression (%) data using maximum likelihood estimation (MLE) via SciPy. The candidates are: Burr, Burr Type XII, Gumbel (right), LogNormal, Weibull (min), Weibull (max), Gamma, and Inverse Weibull (Fréchet). Each fit is ranked by sum of squared errors (SSE) against the empirical histogram density.
 
 ### 2.5 Survival Curve
 
@@ -85,7 +85,7 @@ The optimized parameters are validated against a full historical simulation that
 
 ---
 
-## 3. Results — Session Metrics
+## 3. Results - Session Metrics
 
 ### 3.1 Summary Statistics
 
@@ -104,19 +104,19 @@ Over the 505 sessions analyzed, the key statistics are:
 | Regression-to-close frequency | 64.6% |
 | Direction (Up / Down) | 256 / 249 |
 
-*Table 1: Summary statistics for after-hours session metrics, February 2024 – February 2026.*
+*Table 1: Summary statistics for after-hours session metrics, February 2024 - February 2026.*
 
 The near-equal split between upward (50.7%) and downward (49.3%) sessions confirms that the after-hours drift has no persistent directional bias, supporting a symmetric strategy.
 
 ### 3.2 Interpretation
 
-Both the deviation and regression distributions are positively skewed: the mean exceeds the median for both metrics. This is expected — most sessions exhibit moderate moves, but occasional large moves pull the mean higher. For strategy design, the median is more representative of the typical session than the mean.
+Both the deviation and regression distributions are positively skewed: the mean exceeds the median for both metrics. This is expected since most sessions exhibit moderate moves, but occasional large moves pull the mean higher. For strategy design, the median is more representative of the typical session than the mean.
 
-The median regression ratio of 92.5% is the central result. In a typical session, price retraces more than nine-tenths of its after-hours deviation. The regression-to-close frequency of 64.6% — the fraction of sessions where price returns to within four ticks ($125) of the reference close — further confirms that mean reversion is the dominant after-hours dynamic.
+The median regression ratio of 92.5% is the central result. In a typical session, price retraces more than nine-tenths of its after-hours deviation. The regression-to-close frequency of 64.6%, the fraction of sessions where price returns to within four ticks of the reference close, further confirms that mean reversion is the dominant after-hours dynamic.
 
 ![Figure 1: Max deviation time series across 505 sessions](figures/figure_1_deviation_timeseries.png)
 
-*Figure 1: Max deviation (% of close) by session date. Periods of elevated volatility are visible, corresponding to macro events and FOMC announcements.*
+*Figure 1: Max deviation (% of close) histogram. Periods of elevated volatility are visible, corresponding to macro events and FOMC announcements.*
 
 ---
 
@@ -139,7 +139,7 @@ Eight candidate distributions were fitted to the regression (%) data. The full r
 
 *Table 2: Distribution fits for regression (%), ranked by SSE.*
 
-We select the **LogNormal** distribution (ranked 3rd, SSE within 3% of the top-ranked distribution) for the regression model. This choice is motivated by analytical tractability rather than marginal SSE improvement:
+We select the **LogNormal** distribution (ranked 3rd, SSE within 3% of the top-ranked distribution, though ranked #1 with 2023 data from the original analysis) for the regression model. This choice is motivated by analytical tractability rather than marginal SSE improvement:
 
 - LogNormal has a closed-form PDF, well-understood moments, and wide use in financial modeling.
 - It naturally captures the positive skew and lower bound at zero characteristic of regression amounts.
@@ -193,7 +193,7 @@ The same eight candidates were fitted to the max deviation (%) data:
 
 We select the **Fréchet (Inverse Weibull)** distribution (ranked 5th) for the deviation model. The theoretical motivation is stronger than the SSE ranking suggests:
 
-- The Fréchet distribution belongs to the family of extreme value distributions and is specifically appropriate for modeling the maximum of a set of observations — which is precisely how max deviation is constructed.
+- The Fréchet distribution belongs to the family of extreme value distributions and is specifically appropriate for modeling the maximum of a set of observations, which is precisely how max deviation is constructed.
 - It offers closed-form moments and a three-parameter form amenable to integration in the EV framework.
 - As with the regression model, the important contribution is the framework, not the specific distribution choice. The next analyst working on a different data window may find a different distribution ranks highest.
 
@@ -293,7 +293,7 @@ Both deviation and regression distributions are right-skewed. For both metrics, 
 
 ### 6.2 Variance and Simple Threshold Strategies
 
-The standard deviations for deviation (0.31%) and regression (0.31%) are of the same order as the medians (0.43% and 0.35%). This high coefficient of variation means that simple fixed-threshold strategies — "enter at X%, exit at Y%" — will frequently encounter sessions where the move is too small to trigger entry or too large to avoid the stop. A probabilistic framework that accounts for the full distribution shape is essential.
+The standard deviations for deviation (0.31%) and regression (0.31%) are of the same order as the medians (0.43% and 0.35%). This high coefficient of variation means that simple fixed-threshold strategies (enter at X%, exit at Y%) will frequently encounter sessions where the move is too small to trigger entry or too large to avoid the stop. A probabilistic framework that accounts for the full distribution shape is essential.
 
 ### 6.3 Probability Analysis
 
@@ -319,21 +319,21 @@ The probability of being stopped out is approximately 200 times less likely than
 
 ### 7.1 Strategy Description
 
-The strategy is symmetric: it places both a long and a short order at a fixed percentage distance from the 1:00 AM close. Only one side can trigger per session, since the entry threshold is set at the deviation level — once price moves far enough in one direction to trigger entry, the opposite-side order becomes unreachable within the same session.
+The strategy is symmetric: it places both a long and a short order at a fixed percentage distance from the 1:00 AM close. Only one side can trigger per session, since the entry threshold is set at the deviation level, once price moves far enough in one direction to trigger entry, the opposite-side order becomes unreachable within the same session.
 
 ### 7.2 Order Mechanics
 
 For each session, three levels are computed as percentages of the reference close $C$:
 
-- **Entry**: $C \pm \text{entry\_pct}\%$ — limit orders placed above and below the close
-- **Stop Loss**: $C \pm \text{stop\_pct}\%$ — stop orders placed beyond entry in the direction of the deviation
-- **Take Profit**: deviation extreme minus $\text{tp\_pct}\%$ of $C$ — limit order placed back toward the close
+- **Entry**: $C \pm \text{entry\_pct}\%$ - limit orders placed above and below the close
+- **Stop Loss**: $C \pm \text{stop\_pct}\%$ - stop orders placed beyond entry in the direction of the deviation
+- **Take Profit**: deviation extreme minus $\text{tp\_pct}\%$ of $C$ - limit order placed back toward the close
 
 If price reaches the entry level, the trade is initiated. If price subsequently hits the stop, the trade is closed at a loss. If the regression carries price back to the take-profit level, the trade is closed at a gain. If neither the stop nor take-profit is hit, the trade is closed at the session's final price.
 
 ### 7.3 Relative Percentages
 
-All levels are expressed as percentages of the closing price rather than absolute dollar amounts. This ensures the strategy adapts automatically to changes in ZB's price level over time — a 0.68% entry on a $116 contract is different in absolute terms from the same percentage on a $120 contract, but the statistical properties of the after-hours retracement are defined in percentage terms.
+All levels are expressed as percentages of the closing price rather than absolute dollar amounts. This ensures the strategy adapts automatically to changes in ZB's price level over time.  A 0.68% entry on a $116 contract is different in absolute terms from the same percentage on a $120 contract, but the statistical properties of the after-hours retracement are defined in percentage terms.
 
 ---
 
@@ -351,13 +351,13 @@ $$
 
 Note that $(\text{entry} - \text{stop})$ is negative since $\text{stop} > \text{entry}$.
 
-**Component 2: Partial Regression** — The trade enters (deviation between entry and stop) but regression does not reach the take-profit target.
+**Component 2: Partial Regression** - The trade enters (deviation between entry and stop) but regression does not reach the take-profit target.
 
 $$
 \text{EV}_{\text{partial}} = \int_{\text{entry}}^{\text{stop}} \int_{0}^{y - \text{tp}} f_{\text{Fr}}(y)\; f_{\text{LN}}(x)\; (\text{entry} - y + x)\; dx\; dy
 $$
 
-**Component 3: Full Regression** — The trade enters and regression reaches or exceeds the take-profit level.
+**Component 3: Full Regression** - The trade enters and regression reaches or exceeds the take-profit level.
 
 $$
 \text{EV}_{\text{full}} = (\text{entry} - \text{tp}) \int_{\text{entry}}^{\text{stop}} \int_{y - \text{tp}}^{\infty} f_{\text{Fr}}(y)\; f_{\text{LN}}(x)\; dx\; dy
@@ -475,11 +475,11 @@ The maximum drawdown during the optimized backtest is $4,476 on a $100,000 accou
 
 A conservative starting balance for this strategy is $100,000, which provides:
 
-- Sufficient margin for one ZB futures contract (current CME initial margin is approximately $4,400)
+- Sufficient margin for one ZB futures contract (current CME initial margin is approximately $4,800)
 - A buffer of more than 20× the observed maximum drawdown
 - Room to absorb a drawdown several times larger than the historical maximum without a margin call
 
-Traders with smaller accounts should consider micro Treasury futures (e.g., /MBT) or paper-trade the strategy to build confidence before committing capital.
+Traders with smaller accounts should consider micro Treasury futures (e.g., /MBT) if there is sufficient liquidity or paper-trade the strategy to build confidence before committing capital.
 
 ### 10.3 Regime Sensitivity
 
@@ -506,9 +506,9 @@ Several extensions would strengthen the analysis:
 
 ## 12. Conclusion
 
-This analysis confirms that after-hours mean reversion in ZB Treasury Bond futures is a persistent, quantifiable phenomenon. Over 505 sessions spanning two years, the median regression ratio is 92.5% — price typically retraces more than nine-tenths of its after-hours deviation. A symmetric long/short strategy built on this observation produces an 18.2% return with a 71.3% win rate and a maximum drawdown of 4.5%.
+This analysis confirms that after-hours mean reversion in ZB Treasury Bond futures is a persistent, quantifiable phenomenon. Over 505 sessions spanning two years, the median regression ratio is 92.5%, showing that price typically retraces more than nine-tenths of its after-hours deviation. A symmetric long/short strategy built on this observation produces an 18.2% return with a 71.3% win rate and a maximum drawdown of 4.5%.
 
-The analytical framework — fitting continuous distributions to session metrics and computing expected value via double integration — provides a rigorous foundation for strategy evaluation that goes beyond simple historical backtesting. The EV model identifies the profitable region of parameter space analytically, while the backtest validates performance under realistic execution constraints.
+The analytical framework,fitting continuous distributions to session metrics and computing expected value via double integration, provides a rigorous foundation for strategy evaluation that goes beyond simple historical backtesting. The EV model identifies the profitable region of parameter space analytically, while the backtest validates performance under realistic execution constraints.
 
 The specific numbers reported here will evolve as new data arrives. The framework is designed to accommodate this: re-fitting distributions on updated data, re-optimizing the EV surface, and re-running the backtest is a fully automated pipeline. The contribution is the methodology, not the parameters.
 
