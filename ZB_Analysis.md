@@ -40,13 +40,13 @@ For each session, five metrics are computed from the after-hours data:
 1. **Max Deviation** - The largest absolute price move from the 1:00 AM close to any intra-session extreme:
 
 $$
-\text{maxDeviation} = \max\!\bigl(\text{high}_{\max} - \text{close}_{1\text{am}},\; \text{close}_{1\text{am}} - \text{low}_{\min}\bigr)
+\text{maxDeviation} = \max\bigl(\text{high}_{\max} - \text{close}_{1\text{am}},\; \text{close}_{1\text{am}} - \text{low}_{\min}\bigr)
 $$
 
 2. **Max Deviation (%)** - Max deviation expressed as a percentage of the reference close:
 
 $$
-\text{max\_deviation\_pct} = \frac{\text{max\_deviation}}{\text{close}_{1\text{am}}} \times 100
+\text{maxDeviationPct} = \frac{\text{maxDeviation}}{\text{close}_{1\text{am}}} \times 100
 $$
 
 3. **Regression** - The amount of retracement from the extreme back toward the close, measured from the extreme to the best post-extreme price in the opposite direction.
@@ -56,7 +56,7 @@ $$
 5. **Regression Ratio** - The fraction of the deviation that is retraced:
 
 $$
-\text{regression\_ratio} = \frac{\text{regression}}{\text{max\_deviation}}
+\text{regressionRatio} = \frac{\text{regression}}{\text{maxDeviation}}
 $$
 
 A regression ratio of 1.0 means price fully retraced its deviation; values above 1.0 indicate an overshoot beyond the original close.
