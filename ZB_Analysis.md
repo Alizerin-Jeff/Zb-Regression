@@ -37,23 +37,23 @@ ZB futures trade nearly 24 hours per day on CME Globex, but after-hours price ac
 
 For each session, five metrics are computed from the after-hours data:
 
-1. **Max Deviation** — The largest absolute price move from the 1:00 AM close to any intra-session extreme:
+1. **Max Deviation** - The largest absolute price move from the 1:00 AM close to any intra-session extreme:
 
 $$
 \text{max\_deviation} = \max\!\bigl(\text{high}_{\max} - \text{close}_{1\text{am}},\; \text{close}_{1\text{am}} - \text{low}_{\min}\bigr)
 $$
 
-2. **Max Deviation (%)** — Max deviation expressed as a percentage of the reference close:
+2. **Max Deviation (%)** - Max deviation expressed as a percentage of the reference close:
 
 $$
 \text{max\_deviation\_pct} = \frac{\text{max\_deviation}}{\text{close}_{1\text{am}}} \times 100
 $$
 
-3. **Regression** — The amount of retracement from the extreme back toward the close, measured from the extreme to the best post-extreme price in the opposite direction.
+3. **Regression** - The amount of retracement from the extreme back toward the close, measured from the extreme to the best post-extreme price in the opposite direction.
 
-4. **Regression (%)** — Regression expressed as a percentage of the reference close.
+4. **Regression (%)** - Regression expressed as a percentage of the reference close.
 
-5. **Regression Ratio** — The fraction of the deviation that is retraced:
+5. **Regression Ratio** - The fraction of the deviation that is retraced:
 
 $$
 \text{regression\_ratio} = \frac{\text{regression}}{\text{max\_deviation}}
