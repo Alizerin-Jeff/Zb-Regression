@@ -70,7 +70,7 @@ We fit eight candidate probability distributions to both the max deviation (%) a
 A survival function for the regression ratio is constructed empirically:
 
 $$
-S(x) = P(\texttt{regression\_ratio} \geq x)
+S(x) = P(\texttt{regression\\_ratio} \geq x)
 $$
 
 This is then approximated by a piecewise smoothstep polynomial fitted via nonlinear least squares.
