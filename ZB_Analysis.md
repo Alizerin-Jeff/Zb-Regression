@@ -40,7 +40,7 @@ For each session, five metrics are computed from the after-hours data:
 1. **Max Deviation** - The largest absolute price move from the 1:00 AM close to any intra-session extreme:
 
 $$
-\text{maxDeviation} = \max\bigl(\text{high}_{\max} - \text{close}_{1\text{am}},\; \text{close}_{1\text{am}} - \text{low}_{\min}\bigr)
+\text{maxDeviation} = \max\bigl(\text{high}_{\max} - \text{close}_{1\text{am}},\text{ } \text{close}_{1\text{am}} - \text{low}_{\min}\bigr)
 $$
 
 2. **Max Deviation (%)** - Max deviation expressed as a percentage of the reference close:
@@ -70,7 +70,7 @@ We fit eight candidate probability distributions to both the max deviation (%) a
 A survival function for the regression ratio is constructed empirically:
 
 $$
-S(x) = P(\texttt{regressionRatio} \geq x)
+S(x) = P\text{ }(\texttt{regressionRatio} \geq x)
 $$
 
 This is then approximated by a piecewise smoothstep polynomial fitted via nonlinear least squares.
@@ -148,7 +148,7 @@ We select the **LogNormal** distribution (ranked 3rd, SSE within 3% of the top-r
 The LogNormal PDF with three parameters (shape $\sigma$, location $\mu$, scale $s$):
 
 $$
-f_{\text{LN}}(x\,\sigma,\mu,s) = \frac{1}{\sigma\,(x - \mu)\,\sqrt{2\pi}}\exp\left(-\frac{\bigl[\ln\bigl(\frac{x-\mu}{s}\bigr)\bigr]^2}{2\sigma^2}\right), \quad x > \mu
+f_{\text{LN}}(x,\sigma,\mu,s) = \frac{1}{\sigma\text{ }(x - \mu)\text{ }\sqrt{2\pi}}\exp\left(-\frac{\bigl[\ln\bigl(\frac{x-\mu}{s}\bigr)\bigr]^2}{2\sigma^2}\right), \quad x > \mu
 $$
 
 where $y = \frac{x - \mu}{s}$ is the standardized variable.
@@ -200,13 +200,13 @@ We select the **Fréchet (Inverse Weibull)** distribution (ranked 5th) for the d
 The Fréchet (Inverse Weibull) PDF:
 
 $$
-f_{\text{Fr}}(x\,\alpha,m,s) = \frac{\alpha}{s}\left(\frac{x - m}{s}\right)^{-1-\alpha}\exp\left(-\left(\frac{x - m}{s}\right)^{-\alpha}\right), \quad x > m
+f_{\text{Fr}}(x,\alpha,m,s) = \frac{\alpha}{s}\left(\frac{x - m}{s}\right)^{-1-\alpha}\exp\left(-\left(\frac{x - m}{s}\right)^{-\alpha}\right), \quad x > m
 $$
 
 The theoretical moments:
 
 $$
-\text{mean} = m + s\,\Gamma\left(1 - \frac{1}{\alpha}\right), \qquad \text{median} = m + \frac{s}{(\ln 2)^{1/\alpha}}
+\text{mean} = m + s\text{ }\Gamma\left(1 - \frac{1}{\alpha}\right), \qquad \text{median} = m + \frac{s}{(\ln 2)^{1/\alpha}}
 $$
 
 **Fitted parameters:**
@@ -518,13 +518,13 @@ The specific numbers reported here will evolve as new data arrives. The framewor
 ### A.1 LogNormal PDF
 
 $$
-f_{\text{LN}}(x\,\sigma,\mu,s) = \frac{1}{\sigma\,(x - \mu)\,\sqrt{2\pi}}\exp\left(-\frac{\bigl[\ln\!\bigl(\frac{x-\mu}{s}\bigr)\bigr]^2}{2\sigma^2}\right), \quad x > \mu
+f_{\text{LN}}(x,\sigma,\mu,s) = \frac{1}{\sigma\,(x - \mu)\,\sqrt{2\pi}}\exp\left(-\frac{\bigl[\ln\!\bigl(\frac{x-\mu}{s}\bigr)\bigr]^2}{2\sigma^2}\right), \quad x > \mu
 $$
 
 ### A.2 Fréchet PDF
 
 $$
-f_{\text{Fr}}(x\,\alpha,m,s) = \frac{\alpha}{s}\left(\frac{x - m}{s}\right)^{-1-\alpha}\exp\left(-\left(\frac{x - m}{s}\right)^{-\alpha}\right), \quad x > m
+f_{\text{Fr}}(x,\alpha,m,s) = \frac{\alpha}{s}\left(\frac{x - m}{s}\right)^{-1-\alpha}\exp\left(-\left(\frac{x - m}{s}\right)^{-\alpha}\right), \quad x > m
 $$
 
 ### A.3 Fréchet Moments
@@ -556,7 +556,7 @@ $$ \text{where } t = \frac{x - \text{edge}_0}{\text{edge}_1 - \text{edge}_0} $$
 ### A.6 Expected Value — Combined Integral
 
 $$
-\text{EV} = \underbrace{\text{sf}_{\text{Fr}}(\text{stop}) \cdot (\text{entry} - \text{stop})}_{\text{stopped out}} + \underbrace{\int_{\text{entry}}^{\text{stop}} \int_{0}^{y-\text{tp}} f_{\text{Fr}}(y)f_{\text{LN}}(x)(\text{entry} - y + x)dx\,dy}_{\text{partial regression}} + \underbrace{(\text{entry} - \text{tp})\int_{\text{entry}}^{\text{stop}} \int_{y-\text{tp}}^{\infty} f_{\text{Fr}}(y)f_{\text{LN}}(x)\,dx\,dy}_{\text{full regression}}
+\text{EV} = \underbrace{\text{sf}_{\text{Fr}}(\text{stop}) \cdot (\text{entry} - \text{stop})}_{\text{stopped out}} + \underbrace{\int_{\text{entry}}^{\text{stop}} \int_{0}^{y-\text{tp}} f_{\text{Fr}}(y) \text{ } f_{\text{LN}}(x) \text{ } (\text{entry} - y + x) \text{ } dx \text{ } dy}_{\text{partial regression}} + \underbrace{(\text{entry} - \text{tp})\int_{\text{entry}}^{\text{stop}} \int_{y-\text{tp}}^{\infty} f_{\text{Fr}}(y)f_{\text{LN}}(x)\text{ }dx\text{ }dy}_{\text{full regression}}
 $$
 
 ### A.7 Dollar Gain Formula
