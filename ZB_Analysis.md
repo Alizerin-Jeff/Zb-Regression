@@ -241,11 +241,10 @@ The empirical survival function $S(x) = P(\text{regressionRatio} \geq x)$ quanti
 A piecewise smoothstep polynomial was fitted to the empirical survival curve:
 
 $$
-S(x) =
-\begin{cases}
-1 & \text{if } x \leq \text{edge}_0 \\[4pt]
-a \cdot t^2 \cdot (b - t) & \text{if } \text{edge}_0 < x < \text{edge}_1 \\[4pt]
-0 & \text{if } x \geq \text{edge}_1
+S(x) = \begin{cases} 
+1 & x \le \text{edge}_0 \\
+a \cdot t^2(b - t) & \text{edge}_0 < x < \text{edge}_1 \\
+0 & x \ge \text{edge}_1 
 \end{cases}
 $$
 
@@ -545,14 +544,14 @@ where $F(x)$ is the cumulative distribution function.
 ### A.5 Smoothstep Survival Model
 
 $$
-S(x) =
-\\begin{cases}
-1 & x \leq \text{edge}_0 \\[4pt]
-a \cdot t^2(b - t) & \text{edge}_0 < x < \text{edge}_1 \\[4pt]
-0 & x \geq \text{edge}_1
-\\end{cases}
-\quad \text{where } t = \frac{x - \text{edge}_0}{\text{edge}_1 - \text{edge}_0}
+S(x) = \begin{cases} 
+1 & x \le \text{edge}_0 \\
+a \cdot t^2(b - t) & \text{edge}_0 < x < \text{edge}_1 \\
+0 & x \ge \text{edge}_1 
+\end{cases}
 $$
+
+$$ \text{where } t = \frac{x - \text{edge}_0}{\text{edge}_1 - \text{edge}_0} $$
 
 ### A.6 Expected Value — Combined Integral
 
