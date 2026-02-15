@@ -70,7 +70,7 @@ We fit eight candidate probability distributions to both the max deviation (%) a
 A survival function for the regression ratio is constructed empirically:
 
 $$
-S(x) = P(\texttt{regression\_ratio} \geq x)
+S(x) = P(\texttt{regressionRatio} \geq x)
 $$
 
 This is then approximated by a piecewise smoothstep polynomial fitted via nonlinear least squares.
@@ -234,7 +234,7 @@ $$
 
 ## 5. Results — Survival Curve
 
-The empirical survival function $S(x) = P(\text{regression\_ratio} \geq x)$ quantifies the probability that a session's regression ratio exceeds a given threshold. This provides a direct view of how reliable the retracement behavior is across different targets.
+The empirical survival function $S(x) = P(\text{regressionRatio} \geq x)$ quantifies the probability that a session's regression ratio exceeds a given threshold. This provides a direct view of how reliable the retracement behavior is across different targets.
 
 ### 5.1 Smoothstep Fit
 
@@ -325,9 +325,9 @@ The strategy is symmetric: it places both a long and a short order at a fixed pe
 
 For each session, three levels are computed as percentages of the reference close $C$:
 
-- **Entry**: $C \pm \text{entry\_pct}\%$ - limit orders placed above and below the close
-- **Stop Loss**: $C \pm \text{stop\_pct}\%$ - stop orders placed beyond entry in the direction of the deviation
-- **Take Profit**: deviation extreme minus $\text{tp\_pct}\%$ of $C$ - limit order placed back toward the close
+- **Entry**: $C \pm \text{entryPct}\%$ - limit orders placed above and below the close
+- **Stop Loss**: $C \pm \text{stopPct}\%$ - stop orders placed beyond entry in the direction of the deviation
+- **Take Profit**: deviation extreme minus $\text{tpPct}\%$ of $C$ - limit order placed back toward the close
 
 If price reaches the entry level, the trade is initiated. If price subsequently hits the stop, the trade is closed at a loss. If the regression carries price back to the take-profit level, the trade is closed at a gain. If neither the stop nor take-profit is hit, the trade is closed at the session's final price.
 
@@ -395,7 +395,7 @@ The optimizer drives take-profit to approximately zero, indicating that the EV-m
 The EV per trade converts to dollars using the contract's tick structure:
 
 $$
-\text{Gain} = C_{\text{median}} \times \frac{\text{EV}}{100} \times \text{ticks/point} \times \text{\$/tick} \times N_{\text{sessions}}
+\text{Gain} = C_{\text{median}} \times \frac{\text{EV}}{100} \times \text{ticks/point} \times \text{dollar/tick} \times N_{\text{sessions}}
 $$
 
 With the median close of $116.28, 32 ticks per point, $31.25 per tick, and 505 sessions:
@@ -563,5 +563,5 @@ $$
 ### A.7 Dollar Gain Formula
 
 $$
-\text{Gain} = C_{\text{median}} \times \frac{\text{EV}}{100} \times \text{ticks/point} \times \text{\$/tick} \times N_{\text{sessions}}
+\text{Gain} = C_{\text{median}} \times \frac{\text{EV}}{100} \times \text{ticks/point} \times \text{dollar/tick} \times N_{\text{sessions}}
 $$
