@@ -148,7 +148,7 @@ We select the **LogNormal** distribution (ranked 3rd, SSE within 3% of the top-r
 The LogNormal PDF with three parameters (shape $\sigma$, location $\mu$, scale $s$):
 
 $$
-f_{\text{LN}}(x;\,\sigma,\mu,s) = \frac{1}{\sigma\,(x - \mu)\,\sqrt{2\pi}}\;\exp\left(-\frac{\bigl[\ln\bigl(\frac{x-\mu}{s}\bigr)\bigr]^2}{2\sigma^2}\right), \quad x > \mu
+f_{\text{LN}}(x\,\sigma,\mu,s) = \frac{1}{\sigma\,(x - \mu)\,\sqrt{2\pi}}\exp\left(-\frac{\bigl[\ln\bigl(\frac{x-\mu}{s}\bigr)\bigr]^2}{2\sigma^2}\right), \quad x > \mu
 $$
 
 where $y = \frac{x - \mu}{s}$ is the standardized variable.
@@ -200,7 +200,7 @@ We select the **Fréchet (Inverse Weibull)** distribution (ranked 5th) for the d
 The Fréchet (Inverse Weibull) PDF:
 
 $$
-f_{\text{Fr}}(x;\,\alpha,m,s) = \frac{\alpha}{s}\left(\frac{x - m}{s}\right)^{-1-\alpha}\exp\left(-\left(\frac{x - m}{s}\right)^{-\alpha}\right), \quad x > m
+f_{\text{Fr}}(x\,\alpha,m,s) = \frac{\alpha}{s}\left(\frac{x - m}{s}\right)^{-1-\alpha}\exp\left(-\left(\frac{x - m}{s}\right)^{-\alpha}\right), \quad x > m
 $$
 
 The theoretical moments:
@@ -519,13 +519,13 @@ The specific numbers reported here will evolve as new data arrives. The framewor
 ### A.1 LogNormal PDF
 
 $$
-f_{\text{LN}}(x;\,\sigma,\mu,s) = \frac{1}{\sigma\,(x - \mu)\,\sqrt{2\pi}}\exp\left(-\frac{\bigl[\ln\!\bigl(\frac{x-\mu}{s}\bigr)\bigr]^2}{2\sigma^2}\right), \quad x > \mu
+f_{\text{LN}}(x\,\sigma,\mu,s) = \frac{1}{\sigma\,(x - \mu)\,\sqrt{2\pi}}\exp\left(-\frac{\bigl[\ln\!\bigl(\frac{x-\mu}{s}\bigr)\bigr]^2}{2\sigma^2}\right), \quad x > \mu
 $$
 
 ### A.2 Fréchet PDF
 
 $$
-f_{\text{Fr}}(x;\,\alpha,m,s) = \frac{\alpha}{s}\left(\frac{x - m}{s}\right)^{-1-\alpha}\exp\left(-\left(\frac{x - m}{s}\right)^{-\alpha}\right), \quad x > m
+f_{\text{Fr}}(x\,\alpha,m,s) = \frac{\alpha}{s}\left(\frac{x - m}{s}\right)^{-1-\alpha}\exp\left(-\left(\frac{x - m}{s}\right)^{-\alpha}\right), \quad x > m
 $$
 
 ### A.3 Fréchet Moments
@@ -546,11 +546,11 @@ where $F(x)$ is the cumulative distribution function.
 
 $$
 S(x) =
-\begin{cases}
+\\begin{cases}
 1 & x \leq \text{edge}_0 \\[4pt]
 a \cdot t^2(b - t) & \text{edge}_0 < x < \text{edge}_1 \\[4pt]
 0 & x \geq \text{edge}_1
-\end{cases}
+\\end{cases}
 \quad \text{where } t = \frac{x - \text{edge}_0}{\text{edge}_1 - \text{edge}_0}
 $$
 
